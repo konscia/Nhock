@@ -1,19 +1,34 @@
 
 import javax.swing.JOptionPane;
+import model.Cenario;
+import model.Nhock;
 import view.JanelaPrincipal;
+import view.PainelCenario;
 
 /**
  * Responsabilidade da Classe: Executar o loop do Jogo com os objetos principais.
- * @author KALEU
  */
 public class NhockGame {
 
+	//Modelo
+	Cenario cenario;
+	Nhock nhock;
+
+	//Visão
 	JanelaPrincipal janela;
+	PainelCenario painel;
 
 	public NhockGame(){
-		//Inicializa objetos como cenário, jogador, etc.
+		//Inicializa objetos básicos do modelo
+		this.cenario = new Cenario();
+		this.nhock = new Nhock();
+
+		//Iniciliza objetos básicos da visão. Lembrando que a visão pode usar os dados do modelo
+		//Por isso passamos os objetos do cenário e do nhock para o painel cenário.
+		this.painel = new PainelCenario(this.cenario, this.nhock);
 
 		this.janela = new JanelaPrincipal();
+		this.janela.add(this.painel);
 		this.janela.setVisible(true);
 	}
 
@@ -22,8 +37,5 @@ public class NhockGame {
 			//Pega eventos
 			//Processa
 			//Desenha
-
-		//Por enquanto, apenas exibe um Hello World para que possamos acompanhar o desenvolvimento.
-		JOptionPane.showMessageDialog(this.janela, "Você está pronto para comer o máximo que puder?", "Nhock.!", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

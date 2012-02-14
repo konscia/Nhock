@@ -4,6 +4,7 @@ import model.Cenario;
 import model.Nhock;
 import util.Util;
 import view.JanelaPrincipal;
+import view.Joystick;
 import view.PainelCenario;
 
 /**
@@ -18,26 +19,35 @@ public class NhockGame {
 	//Visão
 	JanelaPrincipal janela;
 	PainelCenario painel;
+	Joystick joystick;
 
 	public NhockGame(){
 		//Inicializa objetos básicos do modelo
 		this.cenario = new Cenario();
 		this.nhock = new Nhock();
-		this.nhock.turnDIREITA(); //Inicia andando para a direita para vermos movimento
 
 		//Iniciliza objetos básicos da visão. Lembrando que a visão pode usar os dados do modelo
 		//Por isso passamos os objetos do cenário e do nhock para o painel cenário.
 		this.painel = new PainelCenario(this.cenario, this.nhock);
+		//Inicializa responsável por capturar eventos do usuário.
+		this.joystick = new Joystick();
 
-		this.janela = new JanelaPrincipal();
-		this.janela.add(this.painel);
-		this.janela.setVisible(true);
+		this.janela = new JanelaPrincipal(); //Cira janela
+
+		this.janela.add(this.painel); //Adiciona painel
+		this.janela.addKeyListener(joystick); //Adiciona KeyListener
+		
+		this.janela.setVisible(true); //Exibe
 	}
 
 	public void init(){
 		while(true){
 
 			//Pega eventos
+			if(joystick.direitaPressionada()){ this.nhock.turnDIREITA(); }
+			if(joystick.esquerdaPressionada()){ this.nhock.turnESQUERDA(); }
+			if(joystick.cimaPressionada()){ this.nhock.turnCIMA(); }
+			if(joystick.baixoPressionada()){ this.nhock.turnBAIXO(); }
 
 			//Processa
 			Util.sleep(180); //Põe o programa pra dormir por um tempo - mude akqui para aumentar ou diminuir a velocidade.

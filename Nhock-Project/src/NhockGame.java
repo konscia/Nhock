@@ -43,6 +43,27 @@ public class NhockGame {
 			Util.sleep(180); //Põe o programa pra dormir por um tempo - mude akqui para aumentar ou diminuir a velocidade.
 			this.nhock.step();
 
+			//Controle de Colisão
+
+			//nhock bate no muro
+			if(this.cenario.ehMuro(this.nhock.getCabeca())){
+				JOptionPane.showMessageDialog(this.janela, "Você perdeu brow. Não viu a parede?");
+				System.exit(0);
+			}
+
+			//nhock bate nele mesmo
+			if(this.nhock.temColisao()){
+				JOptionPane.showMessageDialog(this.janela, "Você perdeu brow, tá achando que pode fazer raio-x em você mesmo?.!!");
+				System.exit(0);
+			}
+
+			//nhock pega a semente
+			if(this.cenario.ehSemente(this.nhock.getCabeca())){
+				this.nhock.addPonto();
+				this.cenario.sorteiaSemente();
+			}
+
+
 			//Desenha
 			this.painel.repaint();
 		}

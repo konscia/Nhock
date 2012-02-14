@@ -2,6 +2,7 @@
 import javax.swing.JOptionPane;
 import model.Cenario;
 import model.Nhock;
+import util.Util;
 import view.JanelaPrincipal;
 import view.PainelCenario;
 
@@ -22,6 +23,7 @@ public class NhockGame {
 		//Inicializa objetos básicos do modelo
 		this.cenario = new Cenario();
 		this.nhock = new Nhock();
+		this.nhock.turnDIREITA(); //Inicia andando para a direita para vermos movimento
 
 		//Iniciliza objetos básicos da visão. Lembrando que a visão pode usar os dados do modelo
 		//Por isso passamos os objetos do cenário e do nhock para o painel cenário.
@@ -33,9 +35,17 @@ public class NhockGame {
 	}
 
 	public void init(){
-		//executa loop do jogo
+		while(true){
+
 			//Pega eventos
+
 			//Processa
+			Util.sleep(180); //Põe o programa pra dormir por um tempo - mude akqui para aumentar ou diminuir a velocidade.
+			this.nhock.step();
+
 			//Desenha
+			this.painel.repaint();
+		}
+			
 	}
 }

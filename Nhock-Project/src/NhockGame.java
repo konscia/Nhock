@@ -1,6 +1,7 @@
 
 import javax.swing.JOptionPane;
 import model.Cenario;
+import model.Config;
 import model.Nhock;
 import util.Util;
 import view.JanelaPrincipal;
@@ -20,6 +21,11 @@ public class NhockGame {
 	JanelaPrincipal janela;
 	PainelCenario painel;
 	Joystick joystick;
+
+	//Controle do Jogo
+
+	//Nível, 1 é o mais lento. 10 o mais rápido
+	int nivel = 1;
 
 	public NhockGame(){
 		//Inicializa objetos básicos do modelo
@@ -43,7 +49,7 @@ public class NhockGame {
 
 	public void init(){
 		while(true){		
-			Util.sleep(180); //Põe o programa pra dormir por um tempo - mude akqui para aumentar ou diminuir a velocidade.
+			Util.sleep(Config.VELOCIDADE); //Põe o programa pra dormir por um tempo - mude akqui para aumentar ou diminuir a velocidade.
 
 			//Pega eventos
 			if(joystick.direitaPressionada()){ this.nhock.turnDIREITA(); }

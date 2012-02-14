@@ -110,7 +110,7 @@ public class Nhock {
 	public void desenha(Graphics g) {
 		g.setColor(Color.green);
 		for(Ponto p : this.corpo){
-			g.fillOval(p.getX()*20, p.getY()*20, 20, 20);
+			g.fillOval(p.getX()*Config.TAMANHO, p.getY()*Config.TAMANHO, Config.TAMANHO, Config.TAMANHO);
 		}
 	}
 

@@ -38,10 +38,12 @@ public class NhockGame {
 		this.janela.addKeyListener(joystick); //Adiciona KeyListener
 		
 		this.janela.setVisible(true); //Exibe
+		this.painel.createBufferStrategy(2); //Técnica para a janela parar de piscar
 	}
 
 	public void init(){
-		while(true){
+		while(true){		
+			Util.sleep(180); //Põe o programa pra dormir por um tempo - mude akqui para aumentar ou diminuir a velocidade.
 
 			//Pega eventos
 			if(joystick.direitaPressionada()){ this.nhock.turnDIREITA(); }
@@ -49,8 +51,7 @@ public class NhockGame {
 			if(joystick.cimaPressionada()){ this.nhock.turnCIMA(); }
 			if(joystick.baixoPressionada()){ this.nhock.turnBAIXO(); }
 
-			//Processa
-			Util.sleep(180); //Põe o programa pra dormir por um tempo - mude akqui para aumentar ou diminuir a velocidade.
+			//Processa			
 			this.nhock.step();
 
 			//Controle de Colisão
@@ -73,9 +74,9 @@ public class NhockGame {
 				this.cenario.sorteiaSemente();
 			}
 
-
 			//Desenha
-			this.painel.repaint();
+			this.painel.renderGraphics();
+			this.painel.desenha();
 		}
 			
 	}

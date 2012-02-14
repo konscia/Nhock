@@ -22,15 +22,30 @@ public class PainelCenario extends Canvas{
 		this.nhock = nhock;
 
 		this.setSize(400,200);
+
+		this.setIgnoreRepaint(true);
 	}
 
-	public void paint(Graphics g) {
-		super.paint(g);
+	public void desenha(){
+		if (!getBufferStrategy().contentsLost()){
+			getBufferStrategy().show();
+		}
+	}
 
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, getWidth(), getHeight());
+	public void renderGraphics() {
+		Graphics g = getBufferStrategy().getDrawGraphics();
 
-		this.cenario.desenha(g);
-		this.nhock.desenha(g);
+		//Criamos um contexto gráfico que não leva em conta as bordas
+		Graphics g2 = g.create();
+		//Limpamos a tela
+		g2.setColor(Color.WHITE);
+		g2.fillRect(0, 0, getWidth(), getHeight());
+
+		this.cenario.desenha(g2);
+		this.nhock.desenha(g2);
+
+		//Liberamos os contextos criados.
+		g.dispose();
+		g2.dispose();
 	}
 }

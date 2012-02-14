@@ -31,9 +31,9 @@ public class Cenario {
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-			{1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1},
+			{1,0,0,1,1,0,1,1,0,0,0,0,1,1,0,1,1,0,0,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+			{1,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,1},
 			{1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -63,7 +63,7 @@ public class Cenario {
 	 * Cada número da matriz é representado por um quadrado.
 	 */
 	public void desenha(Graphics g) {
-		g.setColor(Color.black); //pincel é preto
+		g.setColor(new Color(60, 60, 60)); //pincel é preto
 		for(int i = 0; i < 10; i++ ){
 			for(int j = 0; j < 20; j++){
 				if(this.matriz[i][j] == Cenario.MURO){
@@ -72,7 +72,7 @@ public class Cenario {
 			}
 		}
 		//Desenha semente
-		g.setColor(Color.red); //pincel é vermelho
+		g.setColor(Color.green); //pincel é vermelho
 		g.fillRect(this.semente.getX()*20, this.semente.getY()*20, 20, 20);
 	}
 
